@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank App</title>
+    <link rel="stylesheet" href="../CSS/bankApp.css">
+</head>
+<body>
+    
+<header>
+    <nav>
+        <p class="welcome">Login to get started</p>
+
+        <img src="img/logo.png" alt="logo">
+        <div class="login-inputs">
+         <input placeholder="Name" class="account-name" type="text">
+          <input placeholder="password" class="password" type="password"> 
+          <button class="btn login">&rarr;</button>
+        </div>
+    </nav>
+</header>
+
+
+<main>
+    <div class=" hide">
+        <div class="current-balance-text">
+            <p>Current balance</p>
+             <p class="date">As of 7/9/2024</p>
+         </div>
+
+        
+         <p class="balance" >173.18</p>
+        
+        </div>
+
+
+        <div class=" hide">
+            <div class="transactions">
+                
+                <!-- <div class="transaction">
+                    <div class="type-and-date-div">
+                        <div class="transaction-type"></div>
+                    <div class="transaction-date"></div>
+                </div>
+
+                <div class="transaction-amount"></div>
+                </div> -->
+            </div>
+            <div class="operations">
+                <div class="operation transfer-box">
+                    <p>Transfer money</p>
+                    <input type="text" name="to" class="to" id="to">
+                    <input type="number" name="amount" class="transfer-amount" id="amount">
+                    <button class="btn transfer-btn">&rarr;</button>
+                    <br>
+                    <label class="to-label" for="to">To</label>
+                    <label class="amount-label" for="amount">Amount</label>
+
+                </div>
+                <div class="operation loan-box">
+                    <p>Requist loan</p>
+                    <input type="number" name="amount" class="loan-amount" id="amount">
+                    <button class="btn loan-btn">&rarr;</button>
+                    <br>
+                    <label class="amount-label" for="amount">Amount</label>
+                </div>
+                <div class="operation close-account-box">
+                    <p>Close your account</p>
+                    <input type="text" name="name" id="name">
+                    <input type="password" name="password" id="password">
+                    <button class="btn close-account-btn">&rarr;</button>
+                    <br>
+                    <label class="name-label" for="name">name</label>
+                    <label class="password-label" for="password">password</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="hide "><span class="summary-in">IN</span> <span class="summary-out">OUT</span><span class="summary-interest">INTEREST</span></div>
+</main>
+
+
+
+
+<script src="../JS/bankApp.js"></script>
+</body>
+</html>

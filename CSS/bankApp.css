@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    color: #495057;
+}
+body{
+    background-color: #dee2e6;
+}
+html{
+    font-size: 62.5%;
+}
+header input{
+    border: 1px solid black;
+}
+nav{
+    display: flex;
+    justify-content: space-between;
+}
+
+nav p {
+    font-size: 1.8rem;
+    margin-top:2rem ;
+    margin-left: 2rem;
+    font-weight: bold;
+}
+.account-name, .password{
+    display: inline;
+    margin-top: 2rem;
+    margin-right: 2rem;
+    padding: 1rem 1rem ;
+    
+}
+nav img{
+    margin-left: 10rem;
+}
+main{
+
+
+    margin: 10rem auto;
+    width: 55%;
+}
+.hide{
+    display: none;
+}
+.main-text{
+    font-size: 1.8rem;
+    display: flex;
+    justify-content: space-between;
+}
+.current-balance-text{
+    font-size: 3rem;
+}
+.balance{
+    font-size: 3rem;
+}
+.main-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 1.8rem;
+}
+.transactions{
+    height: 50rem;
+    overflow-y: scroll;
+    background-color: #f1f3f5;
+    border-radius: 15px;
+}
+
+.operations{
+    display: flex;
+    flex-direction: column;
+    font-size: 2rem;
+    font-weight: bold;
+    gap: 1rem;
+}
+
+.operation{
+    height: 33.33%;
+    border-radius: 15px;
+
+}
+.operation p {
+    margin-left: 2rem;
+}
+.transfer-box{
+    background-image: linear-gradient(to bottom right , #ffe066,#fcc419);
+
+}
+
+.loan-box{
+    background-image: linear-gradient(to bottom right , #8ce99a,#51cf66);
+
+}
+
+.close-account-box{
+    background-image: linear-gradient(to bottom right , #ffa8a8,#fa5252);
+}
+.btn{
+    border: none;
+    border-radius: 15px;
+    width: 5rem;
+    height: 3rem;
+    font-size: 2rem;
+    /* padding: 1.2rem; */
+    cursor: pointer;
+}
+
+input{
+    border-radius: 15px;
+    border: none;
+    margin-left: 2rem;
+    padding: 1rem 0.3rem;
+    opacity: 0.5;
+} 
+.to-label{
+    margin-left: 9rem;
+    margin-top: 1rem;
+}
+.transfer .amount-label{
+    margin-left: 14rem;
+    margin-top: 1rem;
+}
+
+.name-label,.loan .amount-label{
+    margin-left: 6rem;
+}
+.password-label{
+    margin-left: 12rem;
+}
+
+.transaction{
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+    border-radius: 15px;
+    border-bottom: 2px solid #868e96;
+    border-top: 2px solid #868e96;
+}
+.type-and-date-div{
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+.withdraw{
+    background-image: linear-gradient(to bottom right , #ffa8a8,#fa5252);
+    font-size: 1.5rem;
+    margin-left: 2rem;
+    padding: 0.5rem;
+    border-radius: 15px;
+}
+
+.deposite{
+    background-image: linear-gradient(to bottom right , #8ce99a,#51cf66);
+    font-size: 1.5rem;
+    margin-left: 2rem;
+    padding: 0.5rem;
+    border-radius: 15px;    
+}
+.in-transfer{
+
+    background-image: linear-gradient(to bottom right , #63e6be,#20c997);
+    font-size: 1.5rem;
+    margin-left: 2rem;
+    padding: 0.5rem;
+    border-radius: 15px; 
+}
+.out-transfer{
+    background-image: linear-gradient(to bottom right , #ffa8a8,#fa5252);
+    font-size: 1.5rem;
+    margin-left: 2rem;
+    padding: 0.5rem;
+    border-radius: 15px;
+}
+.transaction-date{
+    font-size: 1.5rem;
+}
+.transaction-amount{
+    font-weight: bold;
+    align-self: center;
+    font-size: 1.5rem;
+    margin-right: 1rem;
+}
+.summary{
+    display: flex;
+    font-size: 2.5rem;
+    justify-content: space-between;
+}
+.summary-in{
+    color: #51cf66;
+}
+.summary-out{
+    color: #fa5252;
+}
