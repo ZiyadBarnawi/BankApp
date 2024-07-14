@@ -22,7 +22,7 @@ let user1 = {
   },
 };
 let user2 = {
-  username: "Duaa",
+  username: "Said",
   password: 1234,
   transactions: [
     [800, "7/7/2024"],
