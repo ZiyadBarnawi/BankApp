@@ -1,4 +1,8 @@
 "use strict";
+
+//******************************users******************************
+
+
 let user1 = {
   username: "Ziad",
   password: 1234,
@@ -9,36 +13,30 @@ let user1 = {
     [200, "3/7/2024"],
     [-600, "5/7/2024"],
     [300, "5/7/2024"],
+    [1000, "5/7/2024"]
   ],
 
   getBalance: function () {
-    return this.transactions
-      .filter(function (curr) {
-        return curr[0] > 0;
-      })
-      .reduce(function (acc, curr) {
+    return this.transactions.reduce(function (acc, curr) {
         return acc + curr[0];
       }, 0);
-  },
+  }
 };
 let user2 = {
-  username: "Duaa",
+  username: "Said",
   password: 1234,
   transactions: [
     [800, "7/7/2024"],
     [900, "9/7/2024"],
     [-250, "10/7/2024"],
     [-200, "10/7/2024"],
+    [900, "11/7/2024"]
   ],
   getBalance: function () {
-    return this.transactions
-      .filter(function (curr) {
-        return curr[0] > 0;
-      })
-      .reduce(function (acc, curr) {
+    return this.transactions.reduce(function (acc, curr) {
         return acc + curr[0];
       }, 0);
-  },
+  }
 };
 
 let user3 = {
@@ -51,14 +49,10 @@ let user3 = {
     [200, "10/7/2024"],
   ],
   getBalance: function () {
-    return this.transactions
-      .filter(function (curr) {
-        return curr[0] > 0;
-      })
-      .reduce(function (acc, curr) {
+    return this.transactions.reduce(function (acc, curr) {
         return acc + curr[0];
       }, 0);
-  },
+  }
 };
 
 let user4 = {
@@ -71,14 +65,10 @@ let user4 = {
     [-490, "10 /7/2024"],
   ],
   getBalance: function () {
-    return this.transactions
-      .filter(function (curr) {
-        return curr[0] > 0;
-      })
-      .reduce(function (acc, curr) {
+    return this.transactions.reduce(function (acc, curr) {
         return acc + curr[0];
       }, 0);
-  },
+  }
 };
 
 //******************************Global variables******************************
@@ -111,9 +101,7 @@ let todayDate = document.querySelector(".date");
 const displayTransaction = function (user) {
   transactionsDiv.innerHTML = "";
   for (let transaction of user.transactions) {
-    console.log("in the for of loop", [1, 2][2]);
     if (transaction[2] == "in-transfer") {
-      console.log("In the transfer div");
       let html = `
                     <div class="transaction in-transfer">
                     <div class="type-and-date-div">
@@ -128,7 +116,6 @@ const displayTransaction = function (user) {
 
       transactionsDiv.insertAdjacentHTML("afterbegin", html);
     } else if (transaction[2] == "out-transfer") {
-      console.log("In the transfer div");
       let html = `
                     <div class="transaction out-transfer">
                     <div class="type-and-date-div">
