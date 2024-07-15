@@ -82,12 +82,14 @@ let accPassword = document.querySelector(".password");
 let loanInput = document.querySelector(".loan-amount");
 let transferInput = document.querySelector(".transfer-amount");
 let to = document.querySelector(".to");
-
+let closeAccountNameInput=document.querySelector(".close-account-name-input")
+let closeAccountPasswordInput=document.querySelector(".close-account-password-input")
 //******************************buttons******************************
 let transferBtn = document.querySelector(".transfer-btn");
 let loanBtn = document.querySelector(".loan-btn");
-let closeAccountBtn = document.querySelector(".aclose-account-btn");
-
+let closeAccountBtn = document.querySelector(".close-account-btn");
+let btns=document.querySelectorAll(".btn");
+let loginBtn=document.querySelector(".login")
 //******************************divs and the like******************************
 let transactionsDiv = document.querySelector(".transactions");
 let summaryIn = document.querySelector(".summary-in");
@@ -95,7 +97,9 @@ let summaryout = document.querySelector(".summary-out");
 let summaryInterest = document.querySelector(".summary-interest");
 let welcomeMessage = document.querySelector(".welcome");
 let todayDate = document.querySelector(".date");
-
+let divs = document?.querySelectorAll(".hide");
+let overlay=document.querySelector(".overlay")
+let main=document.querySelector("main");
 //******************************functions******************************
 
 const displayTransaction = function (user) {
@@ -192,14 +196,13 @@ const displaySummary = function (user) {
 const checkLogInInfo = function () {
   let accountName = document.querySelector(".account-name").value;
   let password = document.querySelector(".password").value;
-  let divs = document?.querySelectorAll(".hide");
+  currUser=[]
+  //made another variable that has the same objects as divs above because this might cause problems later
+  let hiddenDivs = document?.querySelectorAll(".hide");
 
   for (let user of users) {
     if (user.username === accountName && user.password === Number(password)) {
-      if (divs == []) {
-        let mainText = document.querySelector(".main-text");
-        let mainGrid = document.querySelector(".main-grid");
-        let summary = document.querySelector(".summary");
+      if (hiddenDivs == []) {
         welcomeMessage.innerHTML = `Welcome back ${user.username}`;
         currUser.push(user);
         todayDate.textContent = `${date.getDate()}/${
@@ -208,7 +211,7 @@ const checkLogInInfo = function () {
 
         displayTransaction(user);
         accName.blur();
-        accPassword.blue();
+        accPassword.blur();
         accName.value = "";
         accPassword.value = "";
         // user.getBalance()
@@ -216,12 +219,12 @@ const checkLogInInfo = function () {
         return;
       }
 
-      divs[0]?.classList?.toggle("hide");
-      divs[0]?.classList?.toggle("main-text");
-      divs[1]?.classList?.toggle("hide");
-      divs[1]?.classList?.toggle("main-grid");
-      divs[2]?.classList?.toggle("hide");
-      divs[2]?.classList?.toggle("summary");
+      hiddenDivs[0]?.classList?.toggle("hide");
+      hiddenDivs[0]?.classList?.toggle("main-text");
+      hiddenDivs[1]?.classList?.toggle("hide");
+      hiddenDivs[1]?.classList?.toggle("main-grid");
+      hiddenDivs[2]?.classList?.toggle("hide");
+      hiddenDivs[2]?.classList?.toggle("summary");
       document.querySelector(".balance").innerHTML = user.getBalance() + "$";
       todayDate.textContent = `${date.getDate()}/${
         date.getMonth() + 1
@@ -240,26 +243,36 @@ const checkLogInInfo = function () {
       return;
     }
   }
-  window.alert("Wrong password or username");
+  // window.alert("Wrong password or username");
+  messages("Wrong password or username","red")
 };
 
-const transfer = function (currUser, to, amount) {
+const transfer = function (currUser, to, amount,e) {
   let transaction = [
-    Number(-amount),
+    Number(-amount.value),
     `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`,
     "out-transfer",
   ];
-  currUser.transactions?.push(transaction);
-
+  
+  let toCopy=to
   to = users.find(function (user) {
     return user.username === to.value;
   });
-  if (to === undefined) {
-    window.alert("Check the username again");
+  if (Number(amount.value) > currUser.getBalance()) {
+    // window.alert("You can't transfer more than you have");
+    console.log(currUser,currUser.getBalance())
+    messages("You can't transfer more than you have","red")
     return;
   }
-  if (amount > currUser.getBalance()) {
-    window.alert("You can't transfer more than you have");
+  
+  if(currUser===to){
+    // window.alert("You can't transfer to you own account");
+    messages("You can't transfer to you own account","red")
+    return;
+  }
+  if (to === undefined) {
+    // window.alert("Check the username again");
+    messages("Check the username again","red")
     return;
   }
   to.transactions.push([
@@ -267,33 +280,84 @@ const transfer = function (currUser, to, amount) {
     `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`,
     "in-transfer",
   ]);
+  currUser.transactions?.push(transaction);
   
-
+  toCopy.value=""
+  amount.value=""
+  
   refreshData(currUser);
-  window.alert(`The transaction was successful`);
+  // window.alert(`The transaction was successful`);
+  messages("The transaction was successful","green")
 };
 
 let addTransferEvent = function () {
   transferBtn.addEventListener(
     "click",
-    transfer(currUser[0], to, transferInput.value)
+    transfer(currUser[0], to, transferInput)
   );
 };
 
 const refreshData = function (user) {
   displayTransaction(user);
   displaySummary(user);
-  console.log("reached the point where I'll change the balance")
-  console.log(user)
-  console.log(document.querySelector(".balance"),user.getBalance())
   document.querySelector(".balance").innerHTML = user.getBalance() + "$";
-  console.log("past the point where I update the balance")
 };
 
 
+const closeAccount=function(){
+if (closeAccountNameInput.value===currUser[0].username&&Number(closeAccountPasswordInput.value)=== currUser[0].password){
+  let index=users.findIndex(function(curr){
+      return curr.username===closeAccountNameInput.value
+
+    })
+    users.splice(index,1)
+    welcomeMessage.textContent="Login to get started"
+      currUser=[]
+      divs[0]?.classList?.toggle("hide");
+      divs[0]?.classList?.toggle("main-text");
+      divs[1]?.classList?.toggle("hide");
+      divs[1]?.classList?.toggle("main-grid");
+      divs[2]?.classList?.toggle("hide");
+      divs[2]?.classList?.toggle("summary");
+    messages("The account was deleted successfuly","green")
+}
+}
+
+
+
+
+const closeOverlay=function(){
+  
+  overlay.classList.toggle("hide-overlay");
+  document.querySelector(".overlay-box").innerHTML="";
+  main.style.pointerEvents="auto";
+  
+  
+  
+}
+
+const messages=function(message,color){
+
+
+  let html=`
+  <div class="overlay-box">
+  <p class="overlay-text"> ${message} </p>
+  <button class="close-overlay-btn">Close</button>
+  </div>
+  `;
+  
+  overlay.insertAdjacentHTML("afterbegin",html);
+  main.style.pointerEvents="none";
+  overlay.classList.toggle("hide-overlay");
+  overlay.style.backdropFilter="blur(3px)"
+  overlay.style.backgroundColor="rgba(0, 0, 0, 0.2);"
+  document.querySelector(".overlay-text").style.color=color
+  document.querySelector(".close-overlay-btn").addEventListener("click",closeOverlay)
+
+
+}
 //******************************code******************************
 
 document.querySelector(".login").addEventListener("click", checkLogInInfo);
-document
-  .querySelector(".transfer-btn")
-  .addEventListener("click", addTransferEvent);
+document.querySelector(".transfer-btn").addEventListener("click", addTransferEvent);
+document.querySelector(".close-account-btn").addEventListener("click", closeAccount);

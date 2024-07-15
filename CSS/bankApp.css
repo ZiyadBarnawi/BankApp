@@ -8,6 +8,8 @@
 }
 body{
     background-color: #dee2e6;
+    width: 100vw;
+    height: 100vh;
 }
 html{
     font-size: 62.5%;
@@ -118,12 +120,12 @@ input{
     margin-left: 9rem;
     margin-top: 1rem;
 }
-.transfer .amount-label{
+.transfer-box .amount-label{
     margin-left: 14rem;
     margin-top: 1rem;
 }
 
-.name-label,.loan .amount-label{
+.name-label,.loan-box .amount-label{
     margin-left: 6rem;
 }
 .password-label{
@@ -194,4 +196,54 @@ input{
 }
 .summary-out{
     color: #fa5252;
+}
+ 
+
+.hide-overlay{
+    display: none;
+}
+.overlay{
+
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    
+    /* transform: translate(-50%,-100%); */
+    
+    text-align: center;
+    font-size: 3rem;
+    backdrop-filter: blur(3px);
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 9;
+}
+.overlay-text{
+    padding-top: 2rem;
+    margin-bottom: 2rem;
+    color: #20c997;
+}
+.overlay-box{
+    background-color: white;
+    z-index: 999;
+    width: 50%;
+    height: auto;
+    margin-left:  auto;
+    margin-right:  auto;
+    margin-top: 20%;
+    transform: translate(0,0);
+    border-radius: 15px;
+}
+.close-overlay-btn{
+    background-color: white;
+    color: black;
+    font-size: 1.8rem;
+    border: none;
+    border-radius: 15px;
+    padding: 1rem 2rem;
+    cursor: pointer;
+    box-shadow: 0 1px 1px black ;
+    margin-bottom: 1rem;
+}
+.close-overlay-btn:hover{
+    background-color: whitesmoke;
 }
