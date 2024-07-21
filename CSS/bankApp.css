@@ -247,3 +247,13 @@ input{
 .close-overlay-btn:hover{
     background-color: whitesmoke;
 }
+.sort-div{
+    font-size: 1.8rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+.sort-btn{
+    background-color: #dee2e6;
+}
