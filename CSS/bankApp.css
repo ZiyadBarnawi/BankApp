@@ -257,3 +257,7 @@ input{
 .sort-btn{
     background-color: #dee2e6;
 }
+.date{
+    font-size: 2rem;
+    opacity: 0.5;
+}

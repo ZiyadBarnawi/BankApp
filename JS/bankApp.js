@@ -16,9 +16,9 @@ let user1 = {
   ],
 
   getBalance: function () {
-    return this.transactions.reduce(function (acc, curr) {
+    return new Intl.NumberFormat(area).format( this.transactions.reduce(function (acc, curr) {
       return acc + curr[0];
-    }, 0);
+    }, 0));
   },
 };
 let user2 = {
@@ -32,9 +32,9 @@ let user2 = {
     [900, "11/7/2024"],
   ],
   getBalance: function () {
-    return this.transactions.reduce(function (acc, curr) {
+    return new Intl.NumberFormat(area).format( this.transactions.reduce(function (acc, curr) {
       return acc + curr[0];
-    }, 0);
+    }, 0));
   },
 };
 
@@ -48,9 +48,9 @@ let user3 = {
     [200, "10/7/2024"],
   ],
   getBalance: function () {
-    return this.transactions.reduce(function (acc, curr) {
+    return new Intl.NumberFormat(area).format( this.transactions.reduce(function (acc, curr) {
       return acc + curr[0];
-    }, 0);
+    }, 0));
   },
 };
 
@@ -64,9 +64,9 @@ let user4 = {
     [-490, "10 /7/2024"],
   ],
   getBalance: function () {
-    return this.transactions.reduce(function (acc, curr) {
+    return new Intl.NumberFormat(area).format( this.transactions.reduce(function (acc, curr) {
       return acc + curr[0];
-    }, 0);
+    }, 0));
   },
 };
 
@@ -76,6 +76,14 @@ let currUser = [];
 let date = new Date();
 let sorted={state:false};
 let unsortedTransaction={transaction:undefined};
+let option={
+  hour:"numeric",
+  minute:"numeric",
+  day:"numeric",
+  month:"long",
+  year:"numeric"
+}
+let area=navigator.language
 //******************************inputs******************************
 let accName = document.querySelector(".account-name");
 let accPassword = document.querySelector(".password");
@@ -115,7 +123,7 @@ const displayTransaction = function (user) {
                     </div>
 
                     <div class="transaction-amount">${
-                      transaction[0] + "$"
+                      new Intl.NumberFormat(area).format( transaction[0]) + "$"
                     }</div>
                     </div>`;
 
@@ -129,7 +137,7 @@ const displayTransaction = function (user) {
                     </div>
 
                     <div class="transaction-amount">${
-                      transaction[0] + "$"
+                      new Intl.NumberFormat(area).format(transaction[0]) + "$"
                     }</div>
                     </div>`;
 
@@ -143,7 +151,7 @@ const displayTransaction = function (user) {
                     </div>
 
                     <div class="transaction-amount">${
-                      transaction[0] + "$"
+                      new Intl.NumberFormat(area).format(transaction[0]) + "$"
                     }</div>
                     </div>`;
 
@@ -157,7 +165,7 @@ const displayTransaction = function (user) {
                     </div>
 
                     <div class="transaction-amount">${
-                      transaction[0] + "$"
+                      new Intl.NumberFormat(area).format(transaction[0]) + "$"
                     }</div>
                     </div>`;
 
@@ -207,9 +215,10 @@ const checkLogInInfo = function () {
         welcomeMessage.innerHTML = `Welcome back ${user.username}`;
         currUser.push(user);
         unsortedTransaction.transaction=[...user.transactions]
-        todayDate.textContent = `${date.getDate()}/${
-          date.getMonth() + 1
-        }/${date.getFullYear()}`;
+        // todayDate.textContent = `${date.getDate()}/${
+        //   date.getMonth() + 1
+        // }/${date.getFullYear()}`;
+        todayDate.textContent=Intl.DateTimeFormat(area,option).format(date)
 
         displayTransaction(user);
         accName.blur();
@@ -230,9 +239,11 @@ const checkLogInInfo = function () {
       hiddenDivs[3]?.classList?.toggle("hide");
       hiddenDivs[3]?.classList?.toggle("sort-div");
       document.querySelector(".balance").innerHTML = user.getBalance() + "$";
-      todayDate.textContent = `${date.getDate()}/${
-        date.getMonth() + 1
-      }/${date.getFullYear()}`;
+      // todayDate.textContent = `${date.getDate()}/${
+      //   date.getMonth() + 1
+      // }/${date.getFullYear()}`;
+      todayDate.textContent=Intl.DateTimeFormat(area,option).format(date)
+
       for (let transaction of user.transactions) {
       }
       welcomeMessage.innerHTML = `Welcome back ${user.username}`;
@@ -253,14 +264,12 @@ const checkLogInInfo = function () {
 
 const transfer = function (currUser, to, amount) {
   let transaction = [
-    Number(-amount.value),
+    new Intl.NumberFormat(area).format (Number(-amount.value)),
     `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`,
     "out-transfer",
   ];
-  console.log(transaction)
   let toCopy = to;
 
-  console.log(amount.value)
   to = users.find(function (user) {
     return user.username === to.value;
   });
@@ -269,7 +278,6 @@ const transfer = function (currUser, to, amount) {
     messages("You can't transfer more than you have", "red");
     return;
   }
-console.log(currUser)
   if (currUser === to) {
     // window.alert("You can't transfer to you own account");
     messages("You can't transfer to you own account", "red");
@@ -281,7 +289,7 @@ console.log(currUser)
     return;
   }
   to.transactions.push([
-    Number(amount.value),
+    new Intl.NumberFormat(area).format (Number(amount.value)),
     `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`,
     "in-transfer",
   ]);
@@ -368,7 +376,8 @@ const requistLoan = function () {
     })
   ) {
     currUser[0].transactions.push([
-      amount,
+
+      new Intl.NumberFormat(area).format( Math.round(amount)),
       `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`,
       "in-transfer",
     ]);
