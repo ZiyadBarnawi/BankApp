@@ -14,7 +14,12 @@ let user1 = {
     [300, "5/7/2024"],
     [1000, "5/7/2024"],
   ],
-
+  calcDate:function(day,month,year){
+    let newDate=new Date()
+    newDate.setFullYear(year)
+    newDate.setMonth(month-1)
+    newDate.setDate(day)
+  },
   getBalance: function () {
     return new Intl.NumberFormat(area).format( this.transactions.reduce(function (acc, curr) {
       return acc + curr[0];
