@@ -22,6 +22,7 @@ nav{
     justify-content: space-between;
 }
 
+
 nav p {
     font-size: 1.8rem;
     margin-top:2rem ;
@@ -33,6 +34,7 @@ nav p {
     margin-top: 2rem;
     margin-right: 2rem;
     padding: 1rem 1rem ;
+    cursor: text;
     
 }
 nav img{

@@ -14,18 +14,14 @@ let user1 = {
     [300, "5/7/2024"],
     [1000, "5/7/2024"],
   ],
-  calcDate:function(day,month,year){
-    let newDate=new Date()
-    newDate.setFullYear(year)
-    newDate.setMonth(month-1)
-    newDate.setDate(day)
-  },
   getBalance: function () {
     return new Intl.NumberFormat(area).format( this.transactions.reduce(function (acc, curr) {
       return acc + curr[0];
     }, 0));
   },
 };
+
+
 let user2 = {
   username: "Said",
   password: 1234,
@@ -40,7 +36,7 @@ let user2 = {
     return new Intl.NumberFormat(area).format( this.transactions.reduce(function (acc, curr) {
       return acc + curr[0];
     }, 0));
-  },
+  }
 };
 
 let user3 = {
@@ -56,7 +52,7 @@ let user3 = {
     return new Intl.NumberFormat(area).format( this.transactions.reduce(function (acc, curr) {
       return acc + curr[0];
     }, 0));
-  },
+  }
 };
 
 let user4 = {
@@ -114,8 +110,15 @@ let todayDate = document.querySelector(".date");
 let divs = document?.querySelectorAll(".hide");
 let overlay = document.querySelector(".overlay");
 let main = document.querySelector("main");
+let form=document.querySelector("form");
 //******************************functions******************************
-
+const calcDate=function(day,month,year){
+  let newDate=new Date();
+  newDate.setFullYear(year)
+  newDate.setMonth(month)
+  newDate.setDate(day)
+  return new Intl.DateTimeFormat(area).format(newDate)
+}
 const displayTransaction = function (user) {
   transactionsDiv.innerHTML = "";
   for (let transaction of user.transactions) {
@@ -202,9 +205,9 @@ const displaySummary = function (user) {
   outTransactions = outTransactions.reduce(function (acc, cur) {
     return acc + cur;
   }, 0);
-  summaryIn.textContent = `IN: ${inTransactions + "$"}`;
-  summaryout.textContent = `OUT: ${outTransactions + "$"}`;
-  summaryInterest.textContent = `INTEREST ${(inTransactions * 1.2) / 100}`;
+  summaryIn.textContent = `IN: ${new Intl.NumberFormat(area).format(inTransactions) + "$"}`;
+  summaryout.textContent = `OUT: ${new Intl.NumberFormat(area).format(outTransactions) + "$"}`;
+  summaryInterest.textContent = `INTEREST ${new Intl.NumberFormat(area).format(inTransactions * 1.2 / 100)}`;
 };
 
 const checkLogInInfo = function () {
@@ -356,21 +359,28 @@ const messages = function (message, color) {
   let html = `
   <div class="overlay-box">
   <p class="overlay-text"> ${message} </p>
-  <button class="close-overlay-btn">Close</button>
+  <button  class="close-overlay-btn">Close</button>
   </div>
   `;
 
-  overlay.insertAdjacentHTML("afterbegin", html);
+  overlay.innerHTML=html;
   main.style.pointerEvents = "none";
   overlay.classList.toggle("hide-overlay");
   overlay.style.backdropFilter = "blur(3px)";
   overlay.style.backgroundColor = "rgba(0, 0, 0, 0.2);";
   document.querySelector(".overlay-text").style.color = color;
-  document
-    .querySelector(".close-overlay-btn")
-    .addEventListener("click", closeOverlay);
+  document.querySelector(".close-overlay-btn").addEventListener("click", closeOverlay);
+  document.querySelector(".close-overlay-btn").addEventListener("click",deleteOverlay);
+  
 };
+const deleteOverlay=function(){
+  let overlayBox=document.querySelectorAll(".overlay-box")
+  for(overlay of overlayBox){
+    console.log(overlay)
+    overlay.remove()
+   }
 
+}
 const requistLoan = function () {
   let amount = Number(loanInput.value);
 
@@ -389,7 +399,7 @@ const requistLoan = function () {
     refreshData(currUser[0]);
   } else
     messages(
-      "The rule is that uou must have a transaction that's 10% or more of the amount you are trying to loan",
+      "The rule is that you must have a transaction that's 10% or more of the amount you are trying to loan",
       "red"
     );
 
@@ -434,17 +444,32 @@ const switchSortBtns=function(){
   }
 
 }
+const formatTransactionDate=function(user){
+  for(let [i,transaction] of user.transactions.entries()){
+    transaction[1]=calcDate(...transaction[1].split("/"))
+  }
+  }
+const Timer = function(func) {
+    setTimeout(func, 2500);
+};
+
 //******************************code******************************
 
+formatTransactionDate(user1)
+formatTransactionDate(user2)
+formatTransactionDate(user3)
+formatTransactionDate(user4)
 document.querySelector(".login").addEventListener("click", checkLogInInfo);
-document
-  .querySelector(".transfer-btn")
-  .addEventListener("click", addTransferEvent);
-document
-  .querySelector(".close-account-btn")
-  .addEventListener("click", closeAccount);
-loanBtn.addEventListener("click", requistLoan);
+document.querySelector(".transfer-btn").addEventListener("click", addTransferEvent);
+document.querySelector(".close-account-btn").addEventListener("click", closeAccount);
+document.querySelector("close")
+// loanBtn.addEventListener("click", requistLoan);
 for(let btn of sortBtns){
   btn.addEventListener("click",sortTransactions)
 }
 
+form.addEventListener("click",function(e){e.preventDefault()})
+
+loanBtn.addEventListener("click",function(){
+  Timer(requistLoan)
+})
