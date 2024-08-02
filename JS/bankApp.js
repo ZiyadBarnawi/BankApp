@@ -362,13 +362,14 @@ const messages = function (message, color) {
   <button  class="close-overlay-btn">Close</button>
   </div>
   `;
-
   overlay.innerHTML=html;
   main.style.pointerEvents = "none";
   overlay.classList.toggle("hide-overlay");
   overlay.style.backdropFilter = "blur(3px)";
   overlay.style.backgroundColor = "rgba(0, 0, 0, 0.2);";
-  document.querySelector(".overlay-text").style.color = color;
+  let overlayText=document.querySelector(".overlay-text");
+  console.log(overlayText)
+  overlayText.style.color = color;
   document.querySelector(".close-overlay-btn").addEventListener("click", closeOverlay);
   document.querySelector(".close-overlay-btn").addEventListener("click",deleteOverlay);
   
