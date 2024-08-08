@@ -15,7 +15,7 @@ let user1 = {
     [1000, "5/7/2024"],
   ],
   getBalance: function () {
-    return new Intl.NumberFormat(area).format(
+    return (
       this.transactions.reduce(function (acc, curr) {
         return acc + curr[0];
       }, 0)
@@ -34,7 +34,7 @@ let user2 = {
     [900, "11/7/2024"],
   ],
   getBalance: function () {
-    return new Intl.NumberFormat(area).format(
+    return (
       this.transactions.reduce(function (acc, curr) {
         return acc + curr[0];
       }, 0)
@@ -52,7 +52,7 @@ let user3 = {
     [200, "10/7/2024"],
   ],
   getBalance: function () {
-    return new Intl.NumberFormat(area).format(
+    return (
       this.transactions.reduce(function (acc, curr) {
         return acc + curr[0];
       }, 0)
@@ -70,7 +70,7 @@ let user4 = {
     [-490, "10 /7/2024"],
   ],
   getBalance: function () {
-    return new Intl.NumberFormat(area).format(
+    return (
       this.transactions.reduce(function (acc, curr) {
         return acc + curr[0];
       }, 0)
@@ -230,7 +230,7 @@ const displaySummary = function (user) {
 };
 
 const logoutTimerFunc = function () {
-  let time = 40;
+  let time = 300;
   let interval = setInterval(function () {
     logoutTimer.innerHTML = `You will be loged out in ${
       new Date(clock(time) * 1000).getMinutes() +
@@ -250,11 +250,11 @@ const checkLogInInfo = function () {
   let accountName = document.querySelector(".account-name").value;
   let password = document.querySelector(".password").value;
   currUser = [];
-  //made another variable that has the same objects as divs above because this might cause problems later
-
+  let hiddenDivs2=document.querySelectorAll(".hide")
   for (let user of users) {
     if (user.username === accountName && user.password === Number(password)) {
-      if (hiddenDivs == []) {
+      if (hiddenDivs2.length===0) {
+        //made another variable that has the same objects as divs above because this might cause problems later
         welcomeMessage.innerHTML = `Welcome back ${user.username}`;
         currUser.push(user);
         unsortedTransaction.transaction = [...user.transactions];
@@ -262,6 +262,7 @@ const checkLogInInfo = function () {
         //   date.getMonth() + 1
         // }/${date.getFullYear()}`;
         todayDate.textContent = Intl.DateTimeFormat(area, option).format(date);
+        document.querySelector(".balance").innerHTML = new Intl.NumberFormat(area).format( user.getBalance()) + "$";
 
         displayTransaction(user);
         accName.blur();
@@ -283,14 +284,13 @@ const checkLogInInfo = function () {
       hiddenDivs[2]?.classList?.toggle("summary");
       hiddenDivs[3]?.classList?.toggle("hide");
       hiddenDivs[3]?.classList?.toggle("sort-div");
-      document.querySelector(".balance").innerHTML = user.getBalance() + "$";
+      document.querySelector(".balance").innerHTML = new Intl.NumberFormat(area).format( user.getBalance()) + "$";
       // todayDate.textContent = `${date.getDate()}/${
       //   date.getMonth() + 1
       // }/${date.getFullYear()}`;
       todayDate.textContent = Intl.DateTimeFormat(area, option).format(date);
 
-      for (let transaction of user.transactions) {
-      }
+      
       welcomeMessage.innerHTML = `Welcome back ${user.username}`;
       currUser.push(user);
       displayTransaction(user);
@@ -314,7 +314,6 @@ const checkLogInInfo = function () {
       return;
     }
   }
-  // window.alert("Wrong password or username");
   messages("Wrong password or username", "red");
 };
 
@@ -325,7 +324,7 @@ const transfer = function (currUser, to, amount) {
     "out-transfer",
   ];
   let toCopy = to;
-
+  console.log(Number(amount.value))
   to = users.find(function (user) {
     return user.username === to.value;
   });
@@ -350,25 +349,18 @@ const transfer = function (currUser, to, amount) {
     "in-transfer",
   ]);
 
-  console.log(to.transactions);
   currUser.transactions?.push(transaction);
 
   toCopy.value = "";
   amount.value = "";
 
   refreshData(currUser);
+  messages("The transaction was successful", "green");
   // window.alert(`The transaction was successful`);
   clearInterval(timerFuncVar);
   timerFuncVar= logoutTimerFunc();
-  messages("The transaction was successful", "green");
 };
 
-let addTransferEvent = function () {
-  transferBtn.addEventListener(
-    "click",
-    transfer(currUser[0], to, transferInput)
-  );
-};
 
 const refreshData = function (user) {
   displayTransaction(user);
@@ -401,35 +393,18 @@ const closeAccount = function () {
 
 const closeOverlay = function () {
   overlay.classList.toggle("hide-overlay");
-  document.querySelector(".overlay-box").innerHTML = "";
+  document.querySelector(".overlay-box").remove;
   main.style.pointerEvents = "auto";
 };
 
-// const messages = function (message, color) {
-//   let html = `
-//   <div class="overlay-box">
-//   <p class="overlay-text"> ${message} </p>
-//   <button  class="close-overlay-btn">Close</button>
-//   </div>
-//   `;
-//   overlay.innerHTML=html;
-//   main.style.pointerEvents = "none";
-//   overlay.classList.toggle("hide-overlay");
-//   overlay.style.backdropFilter = "blur(3px)";
-//   overlay.style.backgroundColor = "rgba(0, 0, 0, 0.2);";
-//   let overlayText=document.querySelector(".overlay-text");
-//   console.log(overlayText)
-//   overlayText.style.color = color;
-//   document.querySelector(".close-overlay-btn").addEventListener("click", closeOverlay);
-//   document.querySelector(".close-overlay-btn").addEventListener("click",deleteOverlay);
 
-// };
 const deleteOverlay = function () {
   let overlayBox = document.querySelectorAll(".overlay-box");
-  for (overlay of overlayBox) {
-    console.log(overlay);
-    overlay.remove();
+  for (let o of overlayBox) {
+    o.remove();
   }
+  main.style.pointerEvents = "auto";
+
 };
 const messages = function (message, color) {
   let html = `
@@ -439,10 +414,21 @@ const messages = function (message, color) {
     </div>
     `;
   overlay.innerHTML = html;
+
+  if(overlay.classList.contains("hide-overlay")){
+
   main.style.pointerEvents = "none";
-  overlay.classList.toggle("hide-overlay");
+  overlay.classList.remove("hide-overlay");
   overlay.style.backdropFilter = "blur(3px)";
   overlay.style.backgroundColor = "rgba(0, 0, 0, 0.2);";
+}
+else
+{
+  main.style.pointerEvents = "auto";
+  overlay.classList.add("hide-overlay");
+  // overlay.style.backdropFilter = "blur(3px)";
+  // overlay.style.backgroundColor = "rgba(0, 0, 0, 0.2);";
+}
 };
 
 function closeModalHandler() {
@@ -544,9 +530,13 @@ formatTransactionDate(user2);
 formatTransactionDate(user3);
 formatTransactionDate(user4);
 document.querySelector(".login").addEventListener("click", checkLogInInfo);
-document
-  .querySelector(".transfer-btn")
-  .addEventListener("click", addTransferEvent);
+
+
+
+// document.querySelector(".transfer-btn").addEventListener("click", addTransferEvent);
+transferBtn.addEventListener("click",function(e){
+  transfer(currUser[0],to,transferInput)
+})
 document
   .querySelector(".close-account-btn")
   .addEventListener("click", closeAccount);
