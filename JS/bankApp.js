@@ -324,7 +324,6 @@ const transfer = function (currUser, to, amount) {
     "out-transfer",
   ];
   let toCopy = to;
-  console.log(Number(amount.value))
   to = users.find(function (user) {
     return user.username === to.value;
   });
