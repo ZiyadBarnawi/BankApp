@@ -1,270 +1,313 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
-    color: #495057;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  color: #495057;
 }
-body{
-    background-color: #dee2e6;
-    width: 100vw;
-    height: 100vh;
+body {
+  background-color: #dee2e6;
+  width: 100vw;
+  height: 100vh;
 }
-html{
-    font-size: 62.5%;
+html {
+  font-size: 62.5%;
 }
-header input{
-    border: 1px solid black;
+header input {
+  border: 1px solid black;
 }
-nav{
-    display: flex;
-    justify-content: space-between;
+nav {
+  display: flex;
+  justify-content: space-between;
 }
-
 
 nav p {
-    font-size: 1.8rem;
-    margin-top:2rem ;
-    margin-left: 2rem;
-    font-weight: bold;
+  font-size: 1.8rem;
+  margin-top: 2rem;
+  margin-left: 2rem;
+  font-weight: bold;
 }
-.account-name, .password{
-    display: inline;
-    margin-top: 2rem;
-    margin-right: 2rem;
-    padding: 1rem 1rem ;
-    cursor: text;
-    
+.account-name,
+.password {
+  display: inline;
+  margin-top: 2rem;
+  margin-right: 2rem;
+  padding: 1rem 1rem;
+  cursor: text;
 }
-nav img{
-    margin-left: 10rem;
+nav img {
+  width: 7rem;
+  margin-left: 10rem;
 }
-main{
-
-
-    margin: 10rem auto;
-    width: 55%;
+main {
+  margin: 5rem auto;
+  width: 55%;
 }
-.hide{
-    display: none;
+.hide {
+  display: none;
 }
-.main-text{
-    font-size: 1.8rem;
-    display: flex;
-    justify-content: space-between;
+.main-text {
+  font-size: 1.8rem;
+  display: flex;
+  justify-content: space-between;
 }
-.current-balance-text{
-    font-size: 3rem;
+.current-balance-text {
+  font-size: 3rem;
 }
-.balance{
-    font-size: 3rem;
+.balance {
+  font-size: 3rem;
 }
-.main-grid{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    column-gap: 1.8rem;
+.main-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 1.8rem;
 }
-.transactions{
-    height: 50rem;
-    overflow-y: scroll;
-    background-color: #f1f3f5;
-    border-radius: 15px;
-}
-
-.operations{
-    display: flex;
-    flex-direction: column;
-    font-size: 2rem;
-    font-weight: bold;
-    gap: 1rem;
+.transactions {
+  height: 50rem;
+  overflow-y: scroll;
+  background-color: #f1f3f5;
+  border-radius: 15px;
 }
 
-.operation{
-    height: 33.33%;
-    border-radius: 15px;
+.operations {
+  display: flex;
+  flex-direction: column;
+  font-size: 2rem;
+  font-weight: bold;
+  gap: 1rem;
+}
 
+.operation {
+  height: 33.33%;
+  border-radius: 15px;
 }
 .operation p {
-    margin-left: 2rem;
+  margin-left: 2rem;
 }
-.transfer-box{
-    background-image: linear-gradient(to bottom right , #ffe066,#fcc419);
-
-}
-
-.loan-box{
-    background-image: linear-gradient(to bottom right , #8ce99a,#51cf66);
-
+.transfer-box {
+  background-image: linear-gradient(
+    to bottom right,
+    #ffe066,
+    #fcc419
+  );
 }
 
-.close-account-box{
-    background-image: linear-gradient(to bottom right , #ffa8a8,#fa5252);
+.loan-box {
+  background-image: linear-gradient(
+    to bottom right,
+    #8ce99a,
+    #51cf66
+  );
 }
-.btn{
-    border: none;
-    border-radius: 15px;
-    width: 5rem;
-    height: 3rem;
-    font-size: 2rem;
-    /* padding: 1.2rem; */
-    cursor: pointer;
+.operation p {
+  border-bottom: 0.1rem solid rgba(0, 0, 0, 0.404);
+  width: fit-content;
+  margin-bottom: 0.5rem;
 }
-
-input{
-    border-radius: 15px;
-    border: none;
-    margin-left: 2rem;
-    padding: 1rem 0.3rem;
-    opacity: 0.5;
-} 
-.to-label{
-    margin-left: 9rem;
-    margin-top: 1rem;
+.close-account-box {
+  background-image: linear-gradient(
+    to bottom right,
+    #ffa8a8,
+    #fa5252
+  );
 }
-.transfer-box .amount-label{
-    margin-left: 14rem;
-    margin-top: 1rem;
+.btn {
+  border: none;
+  border-radius: 15px;
+  width: 5rem;
+  height: 3rem;
+  font-size: 2rem;
+  /* padding: 1.2rem; */
+  cursor: pointer;
 }
-
-.name-label,.loan-box .amount-label{
-    margin-left: 6rem;
+.close-account-btn {
+  width: 4rem;
 }
-.password-label{
-    margin-left: 12rem;
+input {
+  border-radius: 15px;
+  border: none;
+  margin-left: 2rem;
+  padding: 1rem 0.3rem;
+  opacity: 0.5;
 }
-
-.transaction{
-    margin-top: 2rem;
-    display: flex;
-    justify-content: space-between;
-    padding-bottom: 1rem;
-    padding-top: 1rem;
-    border-radius: 15px;
-    border-bottom: 2px solid #868e96;
-    border-top: 2px solid #868e96;
+.loan-amount {
+  width: 14rem;
 }
-.type-and-date-div{
-    display: flex;
-    align-items: center;
-    gap: 2rem;
+.transfer-box input {
+  height: 1rem;
 }
-.withdraw{
-    background-image: linear-gradient(to bottom right , #ffa8a8,#fa5252);
-    font-size: 1.5rem;
-    margin-left: 2rem;
-    padding: 0.5rem;
-    border-radius: 15px;
+.close-account-box input {
+  height: 1rem;
 }
-
-.deposite{
-    background-image: linear-gradient(to bottom right , #8ce99a,#51cf66);
-    font-size: 1.5rem;
-    margin-left: 2rem;
-    padding: 0.5rem;
-    border-radius: 15px;    
+label {
+  font-weight: 400;
 }
-.in-transfer{
-
-    background-image: linear-gradient(to bottom right , #63e6be,#20c997);
-    font-size: 1.5rem;
-    margin-left: 2rem;
-    padding: 0.5rem;
-    border-radius: 15px; 
+.to-label {
+  margin-left: 2rem;
+  padding-right: 6rem;
+  margin-top: 1rem;
 }
-.out-transfer{
-    background-image: linear-gradient(to bottom right , #ffa8a8,#fa5252);
-    font-size: 1.5rem;
-    margin-left: 2rem;
-    padding: 0.5rem;
-    border-radius: 15px;
-}
-.transaction-date{
-    font-size: 1.5rem;
-}
-.transaction-amount{
-    font-weight: bold;
-    align-self: center;
-    font-size: 1.5rem;
-    margin-right: 1rem;
-}
-.summary{
-    display: flex;
-    font-size: 2.5rem;
-    justify-content: space-between;
-}
-.summary-in{
-    color: #51cf66;
-}
-.summary-out{
-    color: #fa5252;
-}
- 
-
-.hide-overlay{
-    display: none;
-}
-.overlay{
-
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
-    top: 0;
-    
-    /* transform: translate(-50%,-100%); */
-    
-    text-align: center;
-    font-size: 3rem;
-    backdrop-filter: blur(3px);
-    background-color: rgba(0, 0, 0, 0.2);
-    z-index: 9;
-}
-.overlay-text{
-    padding-top: 2rem;
-    margin-bottom: 2rem;
-    color: #20c997;
-}
-.overlay-box{
-    background-color: white;
-    z-index: 999;
-    width: 50%;
-    height: auto;
-    margin-left:  auto;
-    margin-right:  auto;
-    margin-top: 20%;
-    transform: translate(0,0);
-    border-radius: 15px;
-}
-.close-overlay-btn{
-    background-color: white;
-    color: black;
-    font-size: 1.8rem;
-    border: none;
-    border-radius: 15px;
-    padding: 1rem 2rem;
-    cursor: pointer;
-    box-shadow: 0 1px 1px black ;
-    margin-bottom: 1rem;
-}
-.close-overlay-btn:hover{
-    background-color: whitesmoke;
-}
-.sort-div{
-    font-size: 1.8rem;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-}
-.sort-btn{
-    background-color: #dee2e6;
-}
-.date{
-    font-size: 2rem;
-    opacity: 0.5;
+.transfer-box .amount-label {
+  margin-left: 2rem;
+  margin-top: 1rem;
 }
 
-.logOutTimer{
-    font-size: 2rem;
-    color: #868e96;
+.name-label,
+.loan-box .amount-label {
+  margin-left: 2rem;
+}
+.name-label {
+  margin-right: 4rem;
+}
+.password-label {
+  margin-left: 2rem;
+}
+
+.transaction {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+  border-radius: 15px;
+  border-bottom: 2px solid #868e96;
+  border-top: 2px solid #868e96;
+}
+.type-and-date-div {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+.withdraw {
+  background-image: linear-gradient(
+    to bottom right,
+    #ffa8a8,
+    #fa5252
+  );
+  font-size: 1.5rem;
+  margin-left: 2rem;
+  padding: 0.5rem;
+  border-radius: 15px;
+}
+
+.deposite {
+  background-image: linear-gradient(
+    to bottom right,
+    #8ce99a,
+    #51cf66
+  );
+  font-size: 1.5rem;
+  margin-left: 2rem;
+  padding: 0.5rem;
+  border-radius: 15px;
+}
+.in-transfer {
+  background-image: linear-gradient(
+    to bottom right,
+    #63e6be,
+    #20c997
+  );
+  font-size: 1.5rem;
+  margin-left: 2rem;
+  padding: 0.5rem;
+  border-radius: 15px;
+}
+.out-transfer {
+  background-image: linear-gradient(
+    to bottom right,
+    #ffa8a8,
+    #fa5252
+  );
+  font-size: 1.5rem;
+  margin-left: 2rem;
+  padding: 0.5rem;
+  border-radius: 15px;
+}
+.transaction-date {
+  font-size: 1.5rem;
+}
+.transaction-amount {
+  font-weight: bold;
+  align-self: center;
+  font-size: 1.5rem;
+  margin-right: 1rem;
+}
+.summary {
+  display: flex;
+  font-size: 2.5rem;
+  justify-content: space-between;
+}
+.summary-in {
+  color: #51cf66;
+}
+.summary-out {
+  color: #fa5252;
+}
+
+.hide-overlay {
+  display: none;
+}
+.overlay {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+
+  /* transform: translate(-50%,-100%); */
+
+  text-align: center;
+  font-size: 3rem;
+  backdrop-filter: blur(3px);
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 9;
+}
+.overlay-text {
+  padding-top: 2rem;
+  margin-bottom: 2rem;
+  color: #20c997;
+}
+.overlay-box {
+  background-color: white;
+  z-index: 999;
+  width: 50%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20%;
+  transform: translate(0, 0);
+  border-radius: 15px;
+}
+.close-overlay-btn {
+  background-color: white;
+  color: black;
+  font-size: 1.8rem;
+  border: none;
+  border-radius: 15px;
+  padding: 1rem 2rem;
+  cursor: pointer;
+  box-shadow: 0 1px 1px black;
+  margin-bottom: 1rem;
+}
+.close-overlay-btn:hover {
+  background-color: whitesmoke;
+}
+.sort-div {
+  font-size: 1.8rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+.sort-btn {
+  background-color: #dee2e6;
+}
+.date {
+  font-size: 2rem;
+  opacity: 0.5;
+}
+
+.logOutTimer {
+  font-size: 2rem;
+  color: #868e96;
 }

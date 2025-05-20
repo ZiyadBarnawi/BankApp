@@ -1,51 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0" />
     <title>Bank App</title>
-    <link rel="stylesheet" href="../CSS/bankApp.css">
-</head>
-<body>
-    
-<header>
-    <nav>
+    <link rel="stylesheet" href="../CSS/bankApp.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
         <p class="welcome">Login to get started</p>
-        <img src="img/logo.png" alt="logo">
+        <img src="img/logo.png" alt="logo" />
         <form action="">
+          <div class="login-inputs">
+            <input
+              placeholder="Name"
+              class="account-name"
+              type="text" />
+            <input
+              placeholder="password"
+              class="password"
+              type="password" />
+            <button class="btn login">&rarr;</button>
+          </div>
+        </form>
+      </nav>
+    </header>
 
-        <div class="login-inputs">
-         <input placeholder="Name" class="account-name" type="text">
-          <input placeholder="password" class="password" type="password"> 
-          <button class="btn login">&rarr;</button>
-        </div>
-    </form>
-    </nav>
-</header>
-
-<div class="overlay hide-overlay">
-    <!-- <button class="close-overlay-btn">X</button>
+    <div class="overlay hide-overlay">
+      <!-- <button class="close-overlay-btn">X</button>
     <br>
     <p class="overlay-text">test-text</p> -->
-</div>
+    </div>
 
-<main>
-    <div class=" hide">
+    <main>
+      <div class="hide">
         <div class="current-balance-text">
-            <p>Current balance</p>
-             <p class="date">As of 7/9/2024</p>
-         </div>
-
-        
-         <p class="balance" >173.18</p>
-        
+          <p>Current balance</p>
+          <p class="date">As of 7/9/2024</p>
         </div>
 
+        <p class="balance">173.18</p>
+      </div>
 
-        <div class=" hide">
-            <div class="transactions">
-                
-                <!-- <div class="transaction">
+      <div class="hide">
+        <div class="transactions">
+          <!-- <div class="transaction">
                     <div class="type-and-date-div">
                         <div class="transaction-type"></div>
                     <div class="transaction-date"></div>
@@ -53,43 +55,68 @@
 
                 <div class="transaction-amount"></div>
                 </div> -->
-            </div>
-            <div class="operations">
-                <div class="operation transfer-box">
-                    <p>Transfer money</p>
-                    <input type="text" name="to" class="to" id="to">
-                    <input type="number" name="amount" class="transfer-amount" id="amount">
-                    <button class="btn transfer-btn">&rarr;</button>
-                    <br>
-                    <label class="to-label" for="to">To</label>
-                    <label class="amount-label" for="amount">Amount</label>
-
-                </div>
-                <div class="operation loan-box">
-                    <p>Requist loan</p>
-                    <input type="number" name="amount" class="loan-amount" id="amount">
-                    <button class="btn loan-btn">&rarr;</button>
-                    <br>
-                    <label class="amount-label" for="amount">Amount</label>
-                </div>
-                <div class="operation close-account-box">
-                    <p>Close your account</p>
-                    <input type="text" class="close-account-name-input" name="name" id="name">
-                    <input type="password" name="password" class="close-account-password-input" id="password">
-                    <button class="btn close-account-btn">&rarr;</button>
-                    <br>
-                    <label class="name-label" for="name">name</label>
-                    <label class="password-label" for="password">password</label>
-                </div>
-            </div>
         </div>
+        <div class="operations">
+          <div class="operation transfer-box">
+            <p>Transfer money</p>
+            <div>
+              <label class="to-label" for="to">To</label>
+              <input type="text" name="to" class="to" id="to" />
+            </div>
+            <label class="amount-label" for="amount">Amount</label>
+            <input
+              type="number"
+              name="amount"
+              class="transfer-amount"
+              id="amount" />
+            <button class="btn transfer-btn">&rarr;</button>
+            <br />
+          </div>
+          <div class="operation loan-box">
+            <p>Requist loan</p>
+            <label class="amount-label" for="amount">Amount</label>
+            <input
+              type="number"
+              name="amount"
+              class="loan-amount"
+              id="amount" />
+            <button class="btn loan-btn">&rarr;</button>
+            <br />
+          </div>
+          <div class="operation close-account-box">
+            <p>Close your account</p>
+            <label class="name-label" for="name">name</label>
+            <input
+              type="text"
+              class="close-account-name-input"
+              name="name"
+              id="name" />
+            <label class="password-label" for="password"
+              >password</label
+            >
+            <input
+              type="password"
+              name="password"
+              class="close-account-password-input"
+              id="password" />
+            <button class="btn close-account-btn">&rarr;</button>
+            <br />
+          </div>
+        </div>
+      </div>
 
-        <div class="hide "><span class="summary-in">IN</span> <span class="summary-out">OUT</span><span class="summary-interest">INTEREST</span> <span class="logOutTimer"></span></div>
-        <div class=" hide"> <button class="btn sort-btn">Sort</button><button class="btn sort-btn">&darr;</button></div>
-</main>
+      <div class="hide">
+        <span class="summary-in">IN</span>
+        <span class="summary-out">OUT</span
+        ><span class="summary-interest">INTEREST</span>
+        <span class="logOutTimer"></span>
+      </div>
+      <div class="hide">
+        <button class="btn sort-btn">Sort</button
+        ><button class="btn sort-btn">&darr;</button>
+      </div>
+    </main>
 
-
-
-<script src="../JS/bankApp.js"></script>
-</body>
+    <script src="../JS/bankApp.js"></script>
+  </body>
 </html>
