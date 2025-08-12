@@ -15,11 +15,9 @@ let user1 = {
     [1000, "5/7/2024"],
   ],
   getBalance: function () {
-    return (
-      this.transactions.reduce(function (acc, curr) {
-        return acc + curr[0];
-      }, 0)
-    );
+    return this.transactions.reduce(function (acc, curr) {
+      return acc + curr[0];
+    }, 0);
   },
 };
 
@@ -34,11 +32,9 @@ let user2 = {
     [900, "11/7/2024"],
   ],
   getBalance: function () {
-    return (
-      this.transactions.reduce(function (acc, curr) {
-        return acc + curr[0];
-      }, 0)
-    );
+    return this.transactions.reduce(function (acc, curr) {
+      return acc + curr[0];
+    }, 0);
   },
 };
 
@@ -52,11 +48,9 @@ let user3 = {
     [200, "10/7/2024"],
   ],
   getBalance: function () {
-    return (
-      this.transactions.reduce(function (acc, curr) {
-        return acc + curr[0];
-      }, 0)
-    );
+    return this.transactions.reduce(function (acc, curr) {
+      return acc + curr[0];
+    }, 0);
   },
 };
 
@@ -70,11 +64,9 @@ let user4 = {
     [-490, "10 /7/2024"],
   ],
   getBalance: function () {
-    return (
-      this.transactions.reduce(function (acc, curr) {
-        return acc + curr[0];
-      }, 0)
-    );
+    return this.transactions.reduce(function (acc, curr) {
+      return acc + curr[0];
+    }, 0);
   },
 };
 
@@ -92,7 +84,7 @@ let option = {
   year: "numeric",
 };
 let area = navigator.language;
-let timerFuncVar
+let timerFuncVar;
 //this variable is used later to check if there's a timer running at the moment
 //******************************inputs******************************
 let accName = document.querySelector(".account-name");
@@ -101,9 +93,7 @@ let loanInput = document.querySelector(".loan-amount");
 let transferInput = document.querySelector(".transfer-amount");
 let to = document.querySelector(".to");
 let closeAccountNameInput = document.querySelector(".close-account-name-input");
-let closeAccountPasswordInput = document.querySelector(
-  ".close-account-password-input"
-);
+let closeAccountPasswordInput = document.querySelector(".close-account-password-input");
 //******************************buttons******************************
 let transferBtn = document.querySelector(".transfer-btn");
 let loanBtn = document.querySelector(".loan-btn");
@@ -218,12 +208,8 @@ const displaySummary = function (user) {
   outTransactions = outTransactions.reduce(function (acc, cur) {
     return acc + cur;
   }, 0);
-  summaryIn.textContent = `IN: ${
-    new Intl.NumberFormat(area).format(inTransactions) + "$"
-  }`;
-  summaryout.textContent = `OUT: ${
-    new Intl.NumberFormat(area).format(outTransactions) + "$"
-  }`;
+  summaryIn.textContent = `IN: ${new Intl.NumberFormat(area).format(inTransactions) + "$"}`;
+  summaryout.textContent = `OUT: ${new Intl.NumberFormat(area).format(outTransactions) + "$"}`;
   summaryInterest.textContent = `INTEREST ${new Intl.NumberFormat(area).format(
     (inTransactions * 1.2) / 100
   )}`;
@@ -233,9 +219,7 @@ const logoutTimerFunc = function () {
   let time = 300;
   let interval = setInterval(function () {
     logoutTimer.innerHTML = `You will be loged out in ${
-      new Date(clock(time) * 1000).getMinutes() +
-      ":" +
-      new Date(clock(time) * 1000).getSeconds()
+      new Date(clock(time) * 1000).getMinutes() + ":" + new Date(clock(time) * 1000).getSeconds()
     }`;
     if (time === 0) {
       clearInterval(interval);
@@ -243,17 +227,17 @@ const logoutTimerFunc = function () {
     }
     time--;
   }, 1000);
-   return interval;
+  return interval;
 };
 
 const checkLogInInfo = function () {
   let accountName = document.querySelector(".account-name").value;
   let password = document.querySelector(".password").value;
   currUser = [];
-  let hiddenDivs2=document.querySelectorAll(".hide")
+  let hiddenDivs2 = document.querySelectorAll(".hide");
   for (let user of users) {
     if (user.username === accountName && user.password === Number(password)) {
-      if (hiddenDivs2.length===0) {
+      if (hiddenDivs2.length === 0) {
         //made another variable that has the same objects as divs above because this might cause problems later
         welcomeMessage.innerHTML = `Welcome back ${user.username}`;
         currUser.push(user);
@@ -262,17 +246,18 @@ const checkLogInInfo = function () {
         //   date.getMonth() + 1
         // }/${date.getFullYear()}`;
         todayDate.textContent = Intl.DateTimeFormat(area, option).format(date);
-        document.querySelector(".balance").innerHTML = new Intl.NumberFormat(area).format( user.getBalance()) + "$";
+        document.querySelector(".balance").innerHTML =
+          new Intl.NumberFormat(area).format(user.getBalance()) + "$";
 
         displayTransaction(user);
         accName.blur();
         accPassword.blur();
         accName.value = "";
         accPassword.value = "";
-       
-        if(timerFuncVar);
+
+        if (timerFuncVar);
         clearInterval(timerFuncVar);
-        timerFuncVar= logoutTimerFunc();
+        timerFuncVar = logoutTimerFunc();
         return;
       }
 
@@ -284,13 +269,13 @@ const checkLogInInfo = function () {
       hiddenDivs[2]?.classList?.toggle("summary");
       hiddenDivs[3]?.classList?.toggle("hide");
       hiddenDivs[3]?.classList?.toggle("sort-div");
-      document.querySelector(".balance").innerHTML = new Intl.NumberFormat(area).format( user.getBalance()) + "$";
+      document.querySelector(".balance").innerHTML =
+        new Intl.NumberFormat(area).format(user.getBalance()) + "$";
       // todayDate.textContent = `${date.getDate()}/${
       //   date.getMonth() + 1
       // }/${date.getFullYear()}`;
       todayDate.textContent = Intl.DateTimeFormat(area, option).format(date);
 
-      
       welcomeMessage.innerHTML = `Welcome back ${user.username}`;
       currUser.push(user);
       displayTransaction(user);
@@ -308,9 +293,9 @@ const checkLogInInfo = function () {
       // }
       // time--;
       // },1000)
-      if(timerFuncVar);
+      if (timerFuncVar);
       clearInterval(timerFuncVar);
-      timerFuncVar= logoutTimerFunc();    
+      timerFuncVar = logoutTimerFunc();
       return;
     }
   }
@@ -357,9 +342,8 @@ const transfer = function (currUser, to, amount) {
   messages("The transaction was successful", "green");
   // window.alert(`The transaction was successful`);
   clearInterval(timerFuncVar);
-  timerFuncVar= logoutTimerFunc();
+  timerFuncVar = logoutTimerFunc();
 };
-
 
 const refreshData = function (user) {
   displayTransaction(user);
@@ -396,14 +380,12 @@ const closeOverlay = function () {
   main.style.pointerEvents = "auto";
 };
 
-
 const deleteOverlay = function () {
   let overlayBox = document.querySelectorAll(".overlay-box");
   for (let o of overlayBox) {
     o.remove();
   }
   main.style.pointerEvents = "auto";
-
 };
 const messages = function (message, color) {
   let html = `
@@ -414,20 +396,17 @@ const messages = function (message, color) {
     `;
   overlay.innerHTML = html;
 
-  if(overlay.classList.contains("hide-overlay")){
-
-  main.style.pointerEvents = "none";
-  overlay.classList.remove("hide-overlay");
-  overlay.style.backdropFilter = "blur(3px)";
-  overlay.style.backgroundColor = "rgba(0, 0, 0, 0.2);";
-}
-else
-{
-  main.style.pointerEvents = "auto";
-  overlay.classList.add("hide-overlay");
-  // overlay.style.backdropFilter = "blur(3px)";
-  // overlay.style.backgroundColor = "rgba(0, 0, 0, 0.2);";
-}
+  if (overlay.classList.contains("hide-overlay")) {
+    main.style.pointerEvents = "none";
+    overlay.classList.remove("hide-overlay");
+    overlay.style.backdropFilter = "blur(3px)";
+    overlay.style.backgroundColor = "rgba(0, 0, 0, 0.2);";
+  } else {
+    main.style.pointerEvents = "auto";
+    overlay.classList.add("hide-overlay");
+    // overlay.style.backdropFilter = "blur(3px)";
+    // overlay.style.backgroundColor = "rgba(0, 0, 0, 0.2);";
+  }
 };
 
 function closeModalHandler() {
@@ -455,7 +434,7 @@ const requistLoan = function () {
       "red"
     );
   clearInterval(timerFuncVar);
-  timerFuncVar= logoutTimerFunc();
+  timerFuncVar = logoutTimerFunc();
   loanInput.value = "";
 };
 
@@ -500,7 +479,7 @@ const formatTransactionDate = function (user) {
   }
 };
 const timer = function (func) {
-  setTimeout(func, 2500);
+  setTimeout(func, 500);
 };
 const clock = function (time) {
   return time;
@@ -530,15 +509,11 @@ formatTransactionDate(user3);
 formatTransactionDate(user4);
 document.querySelector(".login").addEventListener("click", checkLogInInfo);
 
-
-
 // document.querySelector(".transfer-btn").addEventListener("click", addTransferEvent);
-transferBtn.addEventListener("click",function(e){
-  transfer(currUser[0],to,transferInput)
-})
-document
-  .querySelector(".close-account-btn")
-  .addEventListener("click", closeAccount);
+transferBtn.addEventListener("click", function (e) {
+  transfer(currUser[0], to, transferInput);
+});
+document.querySelector(".close-account-btn").addEventListener("click", closeAccount);
 document.querySelector("close");
 // loanBtn.addEventListener("click", requistLoan);
 for (let btn of sortBtns) {

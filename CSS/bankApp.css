@@ -8,8 +8,8 @@
 }
 body {
   background-color: #dee2e6;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
 }
 html {
   font-size: 62.5%;
@@ -79,26 +79,20 @@ main {
 }
 
 .operation {
-  height: 33.33%;
+  /* height: 33.33%; */
   border-radius: 15px;
 }
 .operation p {
   margin-left: 2rem;
 }
 .transfer-box {
-  background-image: linear-gradient(
-    to bottom right,
-    #ffe066,
-    #fcc419
-  );
+  height: 12rem;
+  background-image: linear-gradient(to bottom right, #ffe066, #fcc419);
 }
 
 .loan-box {
-  background-image: linear-gradient(
-    to bottom right,
-    #8ce99a,
-    #51cf66
-  );
+  height: 10rem;
+  background-image: linear-gradient(to bottom right, #8ce99a, #51cf66);
 }
 .operation p {
   border-bottom: 0.1rem solid rgba(0, 0, 0, 0.404);
@@ -106,11 +100,8 @@ main {
   margin-bottom: 0.5rem;
 }
 .close-account-box {
-  background-image: linear-gradient(
-    to bottom right,
-    #ffa8a8,
-    #fa5252
-  );
+  height: 12rem;
+  background-image: linear-gradient(to bottom right, #ffa8a8, #fa5252);
 }
 .btn {
   border: none;
@@ -180,11 +171,7 @@ label {
   gap: 2rem;
 }
 .withdraw {
-  background-image: linear-gradient(
-    to bottom right,
-    #ffa8a8,
-    #fa5252
-  );
+  background-image: linear-gradient(to bottom right, #ffa8a8, #fa5252);
   font-size: 1.5rem;
   margin-left: 2rem;
   padding: 0.5rem;
@@ -192,33 +179,21 @@ label {
 }
 
 .deposite {
-  background-image: linear-gradient(
-    to bottom right,
-    #8ce99a,
-    #51cf66
-  );
+  background-image: linear-gradient(to bottom right, #8ce99a, #51cf66);
   font-size: 1.5rem;
   margin-left: 2rem;
   padding: 0.5rem;
   border-radius: 15px;
 }
 .in-transfer {
-  background-image: linear-gradient(
-    to bottom right,
-    #63e6be,
-    #20c997
-  );
+  background-image: linear-gradient(to bottom right, #63e6be, #20c997);
   font-size: 1.5rem;
   margin-left: 2rem;
   padding: 0.5rem;
   border-radius: 15px;
 }
 .out-transfer {
-  background-image: linear-gradient(
-    to bottom right,
-    #ffa8a8,
-    #fa5252
-  );
+  background-image: linear-gradient(to bottom right, #ffa8a8, #fa5252);
   font-size: 1.5rem;
   margin-left: 2rem;
   padding: 0.5rem;
